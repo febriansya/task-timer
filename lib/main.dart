@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'shared/services/hive_service.dart';
 import 'theme/theme_provider.dart';
-import 'set_timer.dart';
+import 'core/core_injector.dart';
+import 'features/timer/presentation/screens/set_timer_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  // Initialize dependencies before running the app
+  WidgetsFlutterBinding.ensureInitialized();
+  setupDependencies(); // Initialize dependency injection
+  await HiveService.init(); // Initialize Hive storage
+  
+  runApp(
+    ProviderScope(
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

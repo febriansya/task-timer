@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'counting_screen.dart'; // Import the counting screen
+import '../../../../core/utils/time_utils.dart';
+import 'counting_screen.dart';
 
-class SetTimerScreen extends StatefulWidget {
+class SetTimerScreen extends ConsumerStatefulWidget {
   const SetTimerScreen({super.key});
 
   @override
-  State<SetTimerScreen> createState() => _SetTimerScreenState();
+  ConsumerState<SetTimerScreen> createState() => _SetTimerScreenState();
 }
 
-class _SetTimerScreenState extends State<SetTimerScreen> {
+class _SetTimerScreenState extends ConsumerState<SetTimerScreen> {
   int _hours = 0;
   int _minutes = 0;
   int _seconds = 0;
@@ -90,9 +92,22 @@ class _SetTimerScreenState extends State<SetTimerScreen> {
                             elevation: 5,
                           ),
                           onPressed: () {
-                            // Start the timer
-                            int totalSeconds =
-                                _hours * 3600 + _minutes * 60 + _seconds;
+                            // Validate the timer input
+                            if (!TimeUtils.isValidTime(_hours, _minutes, _seconds)) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Please set a valid time'),
+                                  backgroundColor: Color(0xFF6C63FF),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                              return;
+                            }
+                            
+                            // Calculate total seconds
+                            int totalSeconds = TimeUtils.calculateTotalSeconds(
+                                _hours, _minutes, _seconds);
+                            
                             if (totalSeconds > 0) {
                               // Navigate to counting screen with the set time
                               Navigator.push(
@@ -105,7 +120,7 @@ class _SetTimerScreenState extends State<SetTimerScreen> {
                               );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
+                                const SnackBar(
                                   content: Text('Please set a valid time'),
                                   backgroundColor: Color(0xFF6C63FF),
                                   duration: Duration(seconds: 2),
