@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:hive/hive.dart';
-import '../models/timer_model.dart';
 import '../../domain/entities/timer_entity.dart';
 import '../../domain/repositories/timer_repository.dart';
 import '../../../../core/error/exceptions.dart';

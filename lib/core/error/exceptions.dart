@@ -8,18 +8,15 @@ abstract class TimerException implements Exception {
 
 /// Thrown when timer validation fails
 class InvalidTimerException extends TimerException {
-  InvalidTimerException(String message, [StackTrace? stackTrace]) 
-      : super(message, stackTrace);
+  InvalidTimerException(super.message, [super.stackTrace]);
 }
 
 /// Thrown when storage operations fail
 class StorageException extends TimerException {
-  StorageException(String message, [StackTrace? stackTrace]) 
-      : super(message, stackTrace);
+  StorageException(super.message, [super.stackTrace]);
 }
 
 /// Thrown when timer operations fail
 class TimerOperationException extends TimerException {
-  TimerOperationException(String message, [StackTrace? stackTrace]) 
-      : super(message, stackTrace);
+  TimerOperationException(super.message, [super.stackTrace]);
 }

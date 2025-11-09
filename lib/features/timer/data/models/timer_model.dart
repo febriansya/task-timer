@@ -4,22 +4,14 @@ import '../../domain/entities/timer_entity.dart';
 /// Data model for timer that can be converted to/from JSON
 class TimerModel extends TimerEntity {
   const TimerModel({
-    required int id,
-    required String name,
-    required int totalSeconds,
-    required DateTime createdAt,
-    DateTime? completedAt,
-    bool isActive = false,
-    String type = 'countdown',
-  }) : super(
-          id: id,
-          name: name,
-          totalSeconds: totalSeconds,
-          createdAt: createdAt,
-          completedAt: completedAt,
-          isActive: isActive,
-          type: type,
-        );
+    required super.id,
+    required super.name,
+    required super.totalSeconds,
+    required super.createdAt,
+    super.completedAt,
+    super.isActive,
+    super.type,
+  });
 
   /// Creates a TimerModel from a TimerEntity
   factory TimerModel.fromEntity(TimerEntity entity) {
@@ -87,6 +79,7 @@ class TimerModel extends TimerEntity {
   }
 
   /// Creates a copy of this model with specified fields replaced by new values
+  @override
   TimerModel copyWith({
     int? id,
     String? name,

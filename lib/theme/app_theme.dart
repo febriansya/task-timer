@@ -216,10 +216,9 @@ class AppTheme {
       ),
       // Customize other theme elements
       primaryColor: primaryColor,
-      indicatorColor: primaryColor,
       progressIndicatorTheme: ProgressIndicatorThemeData(color: primaryColor),
       iconTheme: IconThemeData(color: textPrimaryColor),
-      unselectedWidgetColor: textSecondaryColor,
+      unselectedWidgetColor: textSecondaryColor, tabBarTheme: TabBarThemeData(indicatorColor: primaryColor),
     );
   }
 }

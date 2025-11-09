@@ -31,14 +31,16 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       // This will automatically use light theme in light mode and dark theme in dark mode
       themeMode: ThemeMode.system,
-      home: const TimerHomePage(),
+      home:  TimerHomePage(),
     );
   }
 }
 
 // Separate your home screen to make it cleaner
 class TimerHomePage extends StatelessWidget {
-  const TimerHomePage({super.key});
+
+
+  TimerHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +86,7 @@ class TimerHomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(36),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -109,3 +111,7 @@ class TimerHomePage extends StatelessWidget {
     );
   }
 }
+
+
+
+// test play sound here
